@@ -1,0 +1,41 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/auth/**
+            - Path=/api/users/**
+        - id: profile-service
+          uri: lb://PROFILE-SERVICE
+          predicates:
+            - Path=/api/profiles/**
+        - id: loan-application-service
+          uri: lb://LOAN-APPLICATION-SERVICE
+          predicates:
+            - Path=/api/loan-applications/**
+        - id: loan-service
+          uri: lb://LOAN-SERVICE
+          predicates:
+            - Path=/api/loans/**
+            - Path=/api/payments/**
+        - id: report-service
+          uri: lb://REPORT-SERVICE
+          predicates:
+            - Path=/api/reports/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedMethods: '*'
+            allowedHeaders: '*'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
