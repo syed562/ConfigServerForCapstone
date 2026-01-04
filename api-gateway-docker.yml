@@ -5,34 +5,6 @@ spring:
 
   cloud:
     gateway:
-      routes:
-        - id: auth-service
-          uri: lb://auth-service
-          predicates:
-            - Path=/api/auth/**
-            - Path=/api/users/**
-
-        - id: profile-service
-          uri: lb://profile-service
-          predicates:
-            - Path=/api/profiles/**
-
-        - id: loan-application-service
-          uri: lb://loan-application-service
-          predicates:
-            - Path=/api/loan-applications/**
-
-        - id: loan-service
-          uri: lb://loan-service
-          predicates:
-            - Path=/api/loans/**
-            - Path=/api/payments/**
-
-        - id: report-service
-          uri: lb://report-service
-          predicates:
-            - Path=/api/reports/**
-
       globalcors:
         cors-configurations:
           '[/**]':
