@@ -7,29 +7,29 @@ spring:
     gateway:
       routes:
         - id: auth-service
-          uri: lb://AUTH-SERVICE
+          uri: lb://auth-service
           predicates:
             - Path=/api/auth/**
             - Path=/api/users/**
 
         - id: profile-service
-          uri: lb://PROFILE-SERVICE
+          uri: lb://profile-service
           predicates:
             - Path=/api/profiles/**
 
         - id: loan-application-service
-          uri: lb://LOAN-APPLICATION-SERVICE
+          uri: lb://loan-application-service
           predicates:
             - Path=/api/loan-applications/**
 
         - id: loan-service
-          uri: lb://LOAN-SERVICE
+          uri: lb://loan-service
           predicates:
             - Path=/api/loans/**
             - Path=/api/payments/**
 
         - id: report-service
-          uri: lb://REPORT-SERVICE
+          uri: lb://report-service
           predicates:
             - Path=/api/reports/**
 
@@ -54,6 +54,7 @@ management:
     web:
       exposure:
         include: health,info,gateway
+
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
