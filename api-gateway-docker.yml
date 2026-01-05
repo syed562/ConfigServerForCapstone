@@ -8,9 +8,18 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: '*'
-            allowedMethods: '*'
+            allowedOrigins:
+              - http://localhost:4200
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+              - PATCH
             allowedHeaders: '*'
+            allowCredentials: true
+
 
 eureka:
   client:
