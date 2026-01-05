@@ -5,11 +5,13 @@ spring:
 
   cloud:
     gateway:
+      # ---------- CORS (JWT HEADER BASED AUTH) ----------
       globalcors:
+        add-to-simple-url-handler-mapping: true
         cors-configurations:
           '[/**]':
             allowedOrigins:
-              - http://localhost:4200
+              - "http://localhost:4200"
             allowedMethods:
               - GET
               - POST
@@ -17,8 +19,14 @@ spring:
               - DELETE
               - OPTIONS
               - PATCH
-            allowedHeaders: '*'
+            allowedHeaders:
+              - Authorization
+              - Content-Type
+            exposedHeaders:
+              - Authorization
+            maxAge: 3600
 
+# ---------- EUREKA ----------
 eureka:
   client:
     service-url:
@@ -28,13 +36,19 @@ eureka:
   instance:
     prefer-ip-address: true
 
+# ---------- ACTUATOR ----------
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,gateway
+        include:
+          - health
+          - info
+          - gateway
 
+# ---------- LOGGING ----------
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: DEBUG
+    org.springframework.web.cors: DEBUG
