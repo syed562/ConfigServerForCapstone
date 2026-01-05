@@ -1,11 +1,6 @@
 spring:
-  config:
-    activate:
-      on-profile: docker
-
   cloud:
     gateway:
-      # ---------- CORS (JWT HEADER BASED AUTH) ----------
       globalcors:
         add-to-simple-url-handler-mapping: true
         cors-configurations:
@@ -18,12 +13,12 @@ spring:
               - PUT
               - DELETE
               - OPTIONS
-              - PATCH
             allowedHeaders:
               - Authorization
               - Content-Type
             exposedHeaders:
               - Authorization
+            allowCredentials: false
             maxAge: 3600
 
 # ---------- EUREKA ----------
