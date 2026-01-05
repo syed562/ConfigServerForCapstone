@@ -18,8 +18,6 @@ spring:
               - OPTIONS
               - PATCH
             allowedHeaders: '*'
-            allowCredentials: true
-
 
 eureka:
   client:
